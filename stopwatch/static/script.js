@@ -203,6 +203,25 @@ function addLap() {
     lapsList.insertBefore(li, lapsList.firstChild);
 }
 
+// Add initial Lap 0 with timestamp
+function addInitialLap() {
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <div class="lap-info">
+            <span class="lap-number">Lap 0</span>
+            <span class="lap-timestamp">${getFormattedTimestamp()}</span>
+        </div>
+        <div class="lap-times">
+            <span class="lap-split">Split: 00:00:00</span>
+            <span class="lap-total">Total: 00:00:00</span>
+        </div>
+    `;
+    lapsList.appendChild(li);
+}
+
+// Initialize Lap 0 on page load
+addInitialLap();
+
 function toggleStartStop() {
     if (!isRunning) {
         isRunning = true;
