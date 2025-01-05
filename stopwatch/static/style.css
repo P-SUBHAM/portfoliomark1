@@ -475,6 +475,10 @@ body {
         align-items: flex-start;
         gap: 0.25rem;
     }
+
+    .visit-count img {
+        width: 80px; /* Adjust for smaller screens */
+    }
 }
 
 /* Additional improvements for very small screens */
@@ -491,6 +495,10 @@ body {
         min-width: 80px;
         padding: 0.5rem 0.8rem;
         font-size: 0.85rem;
+    }
+
+    .visit-count img {
+        width: 60px; /* Further adjustment for very small screens */
     }
 }
 
@@ -511,4 +519,16 @@ body {
 
 .laps::-webkit-scrollbar-thumb:hover {
     background: #666;
+}
+
+/* Add styles for the visit count image within the stopwatch */
+.visit-count {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.visit-count img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+    transition: width 0.3s;
 }
