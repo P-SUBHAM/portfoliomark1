@@ -21,6 +21,17 @@ function toggleTheme() {
 
 themeToggleBtn.addEventListener('click', toggleTheme);
 
+const themeTabSelect = document.getElementById('themeTabSelect');
+if (themeTabSelect) {
+    themeTabSelect.addEventListener('change', (e) => {
+        const value = e.target.value;
+        if (!value) return;
+        const [mode, scheme] = value.split('-'); 
+        body.className = `${mode}-mode ${scheme}`;
+        localStorage.setItem('theme', body.className);
+    });
+}
+
 // Clock functionality
 const hoursDisplay = document.getElementById('hours');
 const clockMinutesDisplay = document.getElementById('clock-minutes');
