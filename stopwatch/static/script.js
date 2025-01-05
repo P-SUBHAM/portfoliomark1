@@ -94,7 +94,7 @@ function updateClock() {
 function updateTimezoneInfo() {
     if (currentTimezone === 'local') {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        timezoneInfo.textContent = `Local Time (${timezone})`;
+        timezoneInfo.textContent = `Time Zone (${timezone})`;
     } else {
         timezoneInfo.textContent = currentTimezone.replace('_', ' ');
     }
