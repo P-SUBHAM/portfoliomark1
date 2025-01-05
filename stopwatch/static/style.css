@@ -1,0 +1,331 @@
+:root {
+    --bg-color: #f0f0f0;
+    --container-bg: #fff;
+    --text-color: #333;
+    --lap-bg: #f8f8f8;
+    --lap-alt-bg: #f0f0f0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --container-bg: #2d2d2d;
+    --text-color: #fff;
+    --lap-bg: #3d3d3d;
+    --lap-alt-bg: #353535;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: var(--container-bg);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.dark-mode .light-icon,
+.light-mode .dark-icon {
+    display: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.clock {
+    background-color: var(--container-bg);
+    padding: 2rem;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.clock-display {
+    font-size: 5rem;
+    font-weight: bold;
+    font-family: monospace;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.clock-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.clock-select {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid var(--text-color);
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.clock-btn {
+    padding: 8px 15px;
+    font-size: 1rem;
+    background-color: #607D8B;
+    min-width: 80px;
+}
+
+.timezone-display {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#ampm {
+    font-size: 2.5rem;
+    margin-left: 15px;
+    opacity: 0.9;
+}
+
+.stopwatch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.stopwatch {
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.display {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-family: monospace;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#startStopBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#startStopBtn.running {
+    background-color: #f44336;
+}
+
+#lapBtn {
+    background-color: #FF9800;
+    color: white;
+}
+
+#resetBtn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.stopwatch-content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.laps {
+    flex: 1;
+    margin-top: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--container-bg);
+}
+
+.notes-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--container-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.notes-header h3 {
+    color: var(--text-color);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+#clearNotesBtn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #607D8B;
+}
+
+#notesArea {
+    flex: 1;
+    min-height: 200px;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: none;
+    transition: border-color 0.3s;
+}
+
+#notesArea:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+#notesArea::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+#lapsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lapsList li {
+    background-color: var(--lap-bg);
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 8px;
+    font-family: monospace;
+    color: var(--text-color);
+    transition: background-color 0.3s;
+}
+
+.lap-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.lap-number {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.lap-timestamp {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.lap-times {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+}
+
+.lap-split {
+    color: #4CAF50;
+}
+
+.lap-total {
+    color: #2196F3;
+}
+
+#lapsList li:nth-child(odd) {
+    background-color: var(--lap-alt-bg);
+}
+
+/* Scrollbar Styling */
+.laps::-webkit-scrollbar {
+    width: 8px;
+}
+
+.laps::-webkit-scrollbar-track {
+    background: var(--container-bg);
+    border-radius: 4px;
+}
+
+.laps::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.laps::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
