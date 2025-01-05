@@ -94,7 +94,7 @@ function updateClock() {
 function updateTimezoneInfo() {
     if (currentTimezone === 'local') {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        timezoneInfo.textContent = `Local Time (${timezone})`;
+        timezoneInfo.textContent = `Time Zone (${timezone})`;
     } else {
         timezoneInfo.textContent = currentTimezone.replace('_', ' ');
     }
@@ -155,6 +155,9 @@ const lapBtn = document.getElementById('lapBtn');
 const resetBtn = document.getElementById('resetBtn');
 const lapsList = document.getElementById('lapsList');
 
+let startTimestamp = 0;
+let offset = 0;
+
 function getCurrentTime() {
     return minutes * 60000 + seconds * 1000 + milliseconds * 10;
 }
@@ -200,34 +203,45 @@ function addLap() {
     lapsList.insertBefore(li, lapsList.firstChild);
 }
 
+// Add initial Lap 0 with timestamp
+function addInitialLap() {
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <div class="lap-info">
+            <span class="lap-number">Lap 0</span>
+            <span class="lap-timestamp">${getFormattedTimestamp()}</span>
+        </div>
+        <div class="lap-times">
+            <span class="lap-split">Split: 00:00:00</span>
+            <span class="lap-total">Total: 00:00:00</span>
+        </div>
+    `;
+    lapsList.appendChild(li);
+}
+
+// Initialize Lap 0 on page load
+addInitialLap();
+
 function toggleStartStop() {
     if (!isRunning) {
         isRunning = true;
         startStopBtn.textContent = 'Stop';
         startStopBtn.classList.add('running');
-        interval = setInterval(() => {
-            milliseconds++;
-            if (milliseconds === 100) {
-                milliseconds = 0;
-                seconds++;
-                if (seconds === 60) {
-                    seconds = 0;
-                    minutes++;
-                }
-            }
-            updateDisplay();
-        }, 10);
+        startTimestamp = Date.now() - offset;
+        interval = setInterval(updateStopwatch, 10);
     } else {
         isRunning = false;
         startStopBtn.textContent = 'Start';
         startStopBtn.classList.remove('running');
         clearInterval(interval);
+        offset = Date.now() - startTimestamp;
     }
 }
 
 function resetStopwatch() {
     isRunning = false;
     clearInterval(interval);
+    offset = 0;
     minutes = 0;
     seconds = 0;
     milliseconds = 0;
@@ -237,6 +251,15 @@ function resetStopwatch() {
     lapsList.innerHTML = '';
     startStopBtn.textContent = 'Start';
     startStopBtn.classList.remove('running');
+}
+
+// Use the real elapsed time
+function updateStopwatch() {
+    const elapsed = Date.now() - startTimestamp;
+    minutes = Math.floor(elapsed / 60000);
+    seconds = Math.floor((elapsed % 60000) / 1000);
+    milliseconds = Math.floor((elapsed % 1000) / 10);
+    updateDisplay();
 }
 
 function updateDisplay() {
