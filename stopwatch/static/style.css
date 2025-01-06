@@ -311,6 +311,22 @@ body {
     background-color: var(--lap-alt-bg);
 }
 
+.lap-notes {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lap-notes-input {
+    width: 100%;
+    min-height: 40px;
+    padding: 5px;
+    font-size: 0.9rem;
+    resize: vertical;
+    border-radius: 4px;
+    border: 1px solid var(--text-color);
+}
+
 /* Dark Mode Themes */
 .dark-mode.neon {
     --bg-color: #000000;

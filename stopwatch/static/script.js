@@ -199,6 +199,9 @@ function addLap() {
             <span class="lap-split">Split: ${formatTime(lapTime)}</span>
             <span class="lap-total">Total: ${formatTime(currentTime)}</span>
         </div>
+        <div class="lap-notes">
+            <textarea class="lap-notes-input" placeholder="Add note for lap..."></textarea>
+        </div>
     `;
     lapsList.insertBefore(li, lapsList.firstChild);
 }
@@ -214,6 +217,9 @@ function addInitialLap() {
         <div class="lap-times">
             <span class="lap-split">Split: 00:00:00</span>
             <span class="lap-total">Total: 00:00:00</span>
+        </div>
+        <div class="lap-notes">
+            <textarea class="lap-notes-input" placeholder="Add note for lap 0..."></textarea>
         </div>
     `;
     lapsList.appendChild(li);
