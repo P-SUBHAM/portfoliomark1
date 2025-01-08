@@ -24,6 +24,18 @@ document.getElementById('fill').addEventListener('click', () => selectTool('fill
 document.getElementById('text').addEventListener('click', () => selectTool('text')); // Added Text button listener
 document.getElementById('clear').addEventListener('click', clearCanvas); // Clear button listener
 
+// Mouse Events
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', endDraw);
+canvas.addEventListener('mouseout', endDraw);
+
+// Touch Events
+canvas.addEventListener('touchstart', startDrawTouch);
+canvas.addEventListener('touchmove', drawTouch);
+canvas.addEventListener('touchend', endDrawTouch);
+canvas.addEventListener('touchcancel', endDrawTouch);
+
 function selectTool(tool) {
     currentTool = tool;
 }
@@ -32,11 +44,6 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawnElements = []; // Clear all stored elements
 }
-
-canvas.addEventListener('mousedown', startDraw);
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mouseup', endDraw);
-canvas.addEventListener('mouseout', endDraw);
 
 function startDraw(e) {
     if (currentTool === 'text') {
@@ -113,6 +120,33 @@ function endDraw(e) {
     } else {
         // For shapes and other tools
     }
+}
+
+// Touch event handlers
+function startDrawTouch(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}
+
+function drawTouch(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}
+
+function endDrawTouch(e) {
+    e.preventDefault();
+    const mouseEvent = new MouseEvent('mouseup', {});
+    canvas.dispatchEvent(mouseEvent);
 }
 
 function drawShape(type, x1, y1, x2, y2) {
