@@ -913,7 +913,7 @@
   }
   
   .services .service-item:hover .icon i {
-    color: var(--accent-color);
+    color: var (--accent-color);
   }
   
   .services .service-item .title {
@@ -1265,3 +1265,14 @@
   .starter-section {
     /* Add your styles here */
   }
+
+  .visit-count {
+    text-align: center;
+    margin-top: auto;
+    padding: 10px 0;
+}
+
+.visit-count img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+}
