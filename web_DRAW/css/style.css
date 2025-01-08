@@ -40,3 +40,13 @@ body {
     border: 1px solid #000000;
     background-color: #ffffff;
 }
+
+.visit-count {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.visit-count img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+}
