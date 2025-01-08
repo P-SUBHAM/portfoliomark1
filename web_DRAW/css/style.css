@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+#toolbar {
+    margin: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+#toolbar button, #toolbar select, #toolbar input[type="color"] {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+#toolbar button:hover, #toolbar select:hover, #toolbar input[type="color"]:hover {
+    background-color: #e0e0e0;
+}
+
+/* Optional: Add specific styling for the Clear button if desired */
+#toolbar #clear {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+#toolbar #clear:hover {
+    background-color: #ff1a1a;
+}
+
+#drawing-canvas {
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
